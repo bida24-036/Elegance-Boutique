@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Elegance Boutique - Your Shopping Cart">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#ffffff">
+    <title>Elegance Boutique - Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Skip to Main Content Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">
+            <h1>Elegance Boutique</h1>
+        </div>
+        <ul class="nav-links" role="menubar">
+            <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+            <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            <li role="none"><a href="orders.html" role="menuitem" class="active">Cart</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
+            <li role="none"><a href="feedback.html" role="menuitem">Feedback</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Cart Section -->
+        <section class="cart-section">
+            <div class="cart-container">
+                <h1>Your Shopping Cart</h1>
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be added dynamically -->
+                    <div class="empty-cart-message" style="display: none;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                        <a href="index.html" class="cta-button">Continue Shopping</a>
+                    </div>
+                </div>
+                <div class="cart-summary">
+                    <div class="summary-item">
+                        <span>Subtotal:</span>
+                        <span class="subtotal">BWP 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping:</span>
+                        <span class="shipping">BWP 50</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total:</span>
+                        <span class="total-amount">BWP 0</span>
+                    </div>
+                    <button class="checkout-btn" id="whatsapp-checkout">
+                        <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <section class="footer-section" aria-labelledby="contact-heading">
+                <h3 id="contact-heading">Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +267 76001655</li>
+                    <li><i class="fas fa-envelope"></i> info@eleganceboutique.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Gaborone, Botswana</li>
+                </ul>
+            </section>
+            <section class="footer-section" aria-labelledby="social-heading">
+                <h3 id="social-heading">Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </section>
+            <section class="footer-section" aria-labelledby="links-heading">
+                <h3 id="links-heading">Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elegance Boutique. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartContainer = document.getElementById('cart-items');
+            const emptyCartMessage = document.querySelector('.empty-cart-message');
+            const subtotalElement = document.querySelector('.subtotal');
+            const totalElement = document.querySelector('.total-amount');
+            const whatsappCheckout = document.getElementById('whatsapp-checkout');
+
+            function updateCart() {
+                if (cartItems.length === 0) {
+                    emptyCartMessage.style.display = 'flex';
+                    cartContainer.innerHTML = '';
+                } else {
+                    emptyCartMessage.style.display = 'none';
+                    cartContainer.innerHTML = cartItems.map((item, index) => `
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div class="item-details">
+                                <h3>${item.name}</h3>
+                                <p class="price">BWP ${item.price}</p>
+                            </div>
+                            <button class="remove-item" data-index="${index}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `).join('');
+                }
+
+                // Update totals
+                const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+                const shipping = 50;
+                const total = subtotal + shipping;
+
+                subtotalElement.textContent = `BWP ${subtotal}`;
+                totalElement.textContent = `BWP ${total}`;
+            }
+
+            // Remove item from cart
+            cartContainer.addEventListener('click', function(e) {
+                if (e.target.closest('.remove-item')) {
+                    const index = e.target.closest('.remove-item').dataset.index;
+                    cartItems.splice(index, 1);
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    updateCart();
+                }
+            });
+
+            // WhatsApp checkout
+            whatsappCheckout.addEventListener('click', function() {
+                if (cartItems.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+
+                const message = `Hello! I would like to place an order:\n\n${cartItems.map(item => 
+                    `- ${item.name}: BWP ${item.price}`
+                ).join('\n')}\n\nTotal: BWP ${cartItems.reduce((sum, item) => sum + item.price, 0) + 50}`;
+
+                const whatsappUrl = `https://wa.me/26776001655?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+
+            // Initial cart update
+            updateCart();
+        });
+    </script>
+</body>
+</html> 

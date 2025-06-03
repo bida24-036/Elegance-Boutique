@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Elegance Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .feedback-section {
+            padding: 8rem 5% 5rem;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .feedback-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .star-rating i {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .star-rating i.active {
+            color: #ffd700;
+        }
+
+        .submit-btn {
+            background: #e63946;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #c1121f;
+        }
+
+        .user-reviews {
+            margin-top: 3rem;
+        }
+
+        .user-review {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .user-review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .user-review-rating {
+            color: #ffd700;
+        }
+
+        .user-review-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .reviews-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-sort {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-select,
+        .sort-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .search-reviews input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 250px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .reviews-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .average-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            color: #ffd700;
+        }
+
+        .user-review {
+            position: relative;
+        }
+
+        .review-actions {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .review-action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .review-action-btn:hover {
+            color: #e63946;
+        }
+
+        .report-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .report-modal.active {
+            display: flex;
+        }
+
+        .report-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .report-reason {
+            margin: 1rem 0;
+        }
+
+        .report-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .report-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .report-submit {
+            background: #e63946;
+            color: white;
+        }
+
+        .report-cancel {
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Elegance Boutique</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="tops.html">Tops</a></li>
+                <li><a href="dresses.html">Dresses</a></li>
+                <li><a href="pants.html">Pants</a></li>
+                <li><a href="shoes.html">Shoes</a></li>
+                <li><a href="orders.html">Place Orders</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="feedback-hero">
+            <div class="feedback-content">
+                <h1>Your Feedback Matters</h1>
+                <p>Help us improve your shopping experience</p>
+            </div>
+        </section>
+
+        <section class="feedback-form-section">
+            <div class="feedback-container">
+                <div class="feedback-form">
+                    <h2>Share Your Experience</h2>
+                    <form id="feedbackForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>How would you rate your experience?</label>
+                            <div class="rating">
+                                <input type="radio" id="star5" name="rating" value="5">
+                                <label for="star5"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2"><i class="fas fa-star"></i></label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1"><i class="fas fa-star"></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback">Your Feedback</label>
+                            <textarea id="feedback" name="feedback" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Would you recommend us to others?</label>
+                            <div class="radio-group">
+                                <input type="radio" id="yes" name="recommend" value="yes" required>
+                                <label for="yes">Yes</label>
+                                <input type="radio" id="no" name="recommend" value="no">
+                                <label for="no">No</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Feedback</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Amazing quality and beautiful designs. The customer service is exceptional!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pinimg.com/564x/9f/5c/9d/9f5c9d4c5c5c5c5c5c5c5c5c5c5c5c5c5.jpg" alt="Customer">
+                            <div>
+                                <h4>Sarah M.</h4>
+                                <p>Regular Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The dresses are stunning and the fit is perfect. Will definitely shop again!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pinimg.com/564x/8f/5c/9d/8f5c9d4c5c5c5c5c5c5c5c5c5c5c5c5c5.jpg" alt="Customer">
+                            <div>
+                                <h4>Lisa K.</h4>
+                                <p>Fashion Enthusiast</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Fast delivery and excellent quality. The customer service team is very helpful."</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pinimg.com/564x/7f/5c/9d/7f5c9d4c5c5c5c5c5c5c5c5c5c5c5c5c5.jpg" alt="Customer">
+                            <div>
+                                <h4>Emma R.</h4>
+                                <p>Online Shopper</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> (+267) 76 001 655</p>
+                <p><i class="fas fa-envelope"></i> bida24-036@thuto.bac.ac.bw</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/kelly_ntwayagae" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@kelly.ntwayagae1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="orders.html">Place Orders</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elegance Boutique. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Star Rating Functionality
+        const starRating = document.getElementById('starRating');
+        const ratingValue = document.getElementById('ratingValue');
+        let currentRating = 0;
+
+        starRating.addEventListener('mouseover', (e) => {
+            if (e.target.classList.contains('fa-star')) {
+                const rating = parseInt(e.target.dataset.rating);
+                updateStars(rating);
+            }
+        });
+
+        starRating.addEventListener('mouseout', () => {
+            updateStars(currentRating);
+        });
+
+        starRating.addEventListener('click', (e) => {
+            if (e.target.classList.contains('fa-star')) {
+                currentRating = parseInt(e.target.dataset.rating);
+                updateStars(currentRating);
+            }
+        });
+
+        function updateStars(rating) {
+            const stars = starRating.querySelectorAll('i');
+            stars.forEach(star => {
+                const starRating = parseInt(star.dataset.rating);
+                star.classList.toggle('active', starRating <= rating);
+            });
+            ratingValue.textContent = `${rating}/5`;
+        }
+
+        // Form Submission
+        const feedbackForm = document.getElementById('feedbackForm');
+        const userReviews = document.getElementById('userReviews');
+
+        let reviews = [];
+
+        // Initialize reviews from localStorage
+        function loadReviews() {
+            const savedReviews = localStorage.getItem('carReviews');
+            if (savedReviews) {
+                reviews = JSON.parse(savedReviews);
+                updateReviewsDisplay();
+            }
+        }
+
+        // Save reviews to localStorage
+        function saveReviews() {
+            localStorage.setItem('carReviews', JSON.stringify(reviews));
+        }
+
+        // Update reviews display
+        function updateReviewsDisplay() {
+            const reviewsList = document.getElementById('reviewsList');
+            const brandFilter = document.getElementById('brandFilter').value;
+            const sortBy = document.getElementById('sortReviews').value;
+            const searchTerm = document.getElementById('searchReviews').value.toLowerCase();
+
+            // Filter reviews
+            let filteredReviews = reviews.filter(review => {
+                const matchesBrand = brandFilter === 'all' || review.carBrand === brandFilter;
+                const matchesSearch = review.review.toLowerCase().includes(searchTerm) ||
+                                    review.name.toLowerCase().includes(searchTerm);
+                return matchesBrand && matchesSearch;
+            });
+
+            // Sort reviews
+            filteredReviews.sort((a, b) => {
+                switch (sortBy) {
+                    case 'newest':
+                        return new Date(b.date) - new Date(a.date);
+                    case 'oldest':
+                        return new Date(a.date) - new Date(b.date);
+                    case 'highest':
+                        return b.rating - a.rating;
+                    case 'lowest':
+                        return a.rating - b.rating;
+                    default:
+                        return 0;
+                }
+            });
+
+            // Update stats
+            updateStats(filteredReviews);
+
+            // Display reviews
+            reviewsList.innerHTML = filteredReviews.map(review => `
+                <div class="user-review" data-review-id="${review.id}">
+                    <div class="review-actions">
+                        <button class="review-action-btn report-btn" onclick="showReportModal('${review.id}')">
+                            <i class="fas fa-flag"></i>
+                        </button>
+                    </div>
+                    <div class="user-review-header">
+                        <div>
+                            <strong>${review.name}</strong>
+                            <span class="user-review-date">${review.date}</span>
+                        </div>
+                        <div class="user-review-rating">
+                            ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                        </div>
+                    </div>
+                    <p><strong>Car Brand:</strong> ${review.carBrand.toUpperCase()}</p>
+                    <p>${review.review}</p>
+                </div>
+            `).join('');
+        }
+
+        // Update statistics
+        function updateStats(reviews) {
+            const totalReviews = reviews.length;
+            const averageRating = totalReviews > 0
+                ? (reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews).toFixed(1)
+                : 0;
+
+            document.getElementById('totalReviews').textContent = totalReviews;
+            document.getElementById('averageRatingValue').textContent = averageRating;
+            
+            const averageStars = document.getElementById('averageStars');
+            averageStars.innerHTML = '★'.repeat(Math.round(averageRating)) + '☆'.repeat(5 - Math.round(averageRating));
+        }
+
+        // Report modal functionality
+        function showReportModal(reviewId) {
+            const modal = document.createElement('div');
+            modal.className = 'report-modal';
+            modal.innerHTML = `
+                <div class="report-content">
+                    <h3>Report Review</h3>
+                    <p>Please select a reason for reporting this review:</p>
+                    <div class="report-reason">
+                        <select id="reportReason">
+                            <option value="inappropriate">Inappropriate Content</option>
+                            <option value="spam">Spam</option>
+                            <option value="fake">Fake Review</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="report-buttons">
+                        <button class="report-btn report-cancel" onclick="this.closest('.report-modal').remove()">Cancel</button>
+                        <button class="report-btn report-submit" onclick="submitReport('${reviewId}')">Submit Report</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('active'), 10);
+        }
+
+        function submitReport(reviewId) {
+            const reason = document.getElementById('reportReason').value;
+            // Here you would typically send the report to a server
+            alert('Thank you for your report. Our team will review it shortly.');
+            document.querySelector('.report-modal').remove();
+        }
+
+        // Event listeners for filters and search
+        document.getElementById('brandFilter').addEventListener('change', updateReviewsDisplay);
+        document.getElementById('sortReviews').addEventListener('change', updateReviewsDisplay);
+        document.getElementById('searchReviews').addEventListener('input', updateReviewsDisplay);
+
+        // Modify the existing form submission
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(feedbackForm);
+            const review = {
+                id: Date.now().toString(),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                carBrand: formData.get('carBrand'),
+                rating: currentRating,
+                review: formData.get('review'),
+                date: new Date().toLocaleDateString()
+            };
+
+            reviews.unshift(review);
+            saveReviews();
+            updateReviewsDisplay();
+
+            // Clear form
+            feedbackForm.reset();
+            currentRating = 0;
+            updateStars(0);
+        });
+
+        // Load reviews when page loads
+        loadReviews();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Elegance Boutique - Get in touch with us for any inquiries">
+    <title>Contact Us - Elegance Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Skip to Main Content Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">
+            <h1>Elegance Boutique</h1>
+        </div>
+        <ul class="nav-links" role="menubar">
+            <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+            <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            <li role="none"><a href="orders.html" role="menuitem">Shop</a></li>
+            <li role="none"><a href="contact.html" role="menuitem" aria-current="page">Contact</a></li>
+            <li role="none"><a href="feedback.html" role="menuitem">Feedback</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="contact-hero" role="banner">
+        <div class="contact-content">
+            <h1>Contact Us</h1>
+            <p>Get in touch with us for any inquiries</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <section class="contact-details" aria-labelledby="contact-info-heading">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 id="contact-info-heading">Contact Information</h2>
+                    <div class="info-item">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+267 76001655</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@eleganceboutique.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Gaborone, Botswana</p>
+                        </div>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://wa.me/26776001655" class="social-btn whatsapp" aria-label="Contact us on WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            WhatsApp
+                        </a>
+                        <a href="https://www.instagram.com/kelly_ntwayagae" class="social-btn instagram" aria-label="Follow us on Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                            Instagram
+                        </a>
+                        <a href="https://www.tiktok.com/@kelly.ntwayagae1" class="social-btn tiktok" aria-label="Follow us on TikTok">
+                            <i class="fab fa-tiktok" aria-hidden="true"></i>
+                            TikTok
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2 id="contact-form-heading">Send us a Message</h2>
+                    <form role="form" aria-labelledby="contact-form-heading">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required aria-required="true"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" aria-label="Send message">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section" aria-labelledby="map-heading">
+            <h2 id="map-heading">Find Us</h2>
+            <div class="map-container" role="complementary" aria-label="Location map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.5!2d25.9!3d-24.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDM2JzAwLjAiUyAyNcKwNTQnMDAuMCJF!5e0!3m2!1sen!2sbw!4v1234567890!5m2!1sen!2sbw" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Elegance Boutique location map">
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <section class="footer-section" aria-labelledby="footer-contact-heading">
+                <h3 id="footer-contact-heading">Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-phone" aria-hidden="true"></i> +267 76001655</li>
+                    <li><i class="fas fa-envelope" aria-hidden="true"></i> info@eleganceboutique.com</li>
+                    <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Gaborone, Botswana</li>
+                </ul>
+            </section>
+            <section class="footer-section" aria-labelledby="footer-social-heading">
+                <h3 id="footer-social-heading">Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Follow us on TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+                </div>
+            </section>
+            <section class="footer-section" aria-labelledby="footer-links-heading">
+                <h3 id="footer-links-heading">Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elegance Boutique. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

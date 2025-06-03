@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Elegance Boutique - Discover our stunning collection of shoes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#ffffff">
+    <title>Elegance Boutique - Shoes Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Skip to Main Content Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">
+            <h1>Elegance Boutique</h1>
+        </div>
+        <ul class="nav-links" role="menubar">
+            <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+            <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            <li role="none"><a href="orders.html" role="menuitem">Shop</a></li>
+            <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
+            <li role="none"><a href="feedback.html" role="menuitem">Feedback</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Back Button -->
+        <div class="container">
+            <a href="index.html" class="back-button" aria-label="Go back to home page">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Hero Section -->
+        <header class="hero" role="banner">
+            <div class="hero-content">
+                <h1>Our Shoes Collection</h1>
+                <p>Discover elegant and stylish footwear for every occasion</p>
+            </div>
+        </header>
+
+        <!-- Shoes Collection -->
+        <section class="products">
+            <div class="product-categories">
+                <div class="category">
+                    <h3>Featured Shoes</h3>
+                    <div class="product-grid">
+                        <div class="product-card">
+                            <img src="https://i.pinimg.com/736x/d3/2d/20/d32d2033f370fb4a21d7c5eb522914ee.jpg" alt="Classic Heels">
+                            <h4>Classic Heels</h4>
+                            <p>$89.99</p>
+                            <button class="cta-button">Add to Cart</button>
+                        </div>
+                        <div class="product-card">
+                            <img src="https://i.pinimg.com/736x/db/9d/24/db9d244ad412c211492d1cc87adbc9ec.jpg" alt="Summer Sandals">
+                            <h4>Summer Sandals</h4>
+                            <p>$49.99</p>
+                            <button class="cta-button">Add to Cart</button>
+                        </div>
+                        <div class="product-card">
+                            <img src="https://i.pinimg.com/736x/e8/36/b5/e836b5ca783934b3bb899050a45413d9.jpg" alt="Elegant Pumps">
+                            <h4>Elegant Pumps</h4>
+                            <p>$79.99</p>
+                            <button class="cta-button">Add to Cart</button>
+                        </div>
+                        <div class="product-card">
+                            <img src="https://i.pinimg.com/736x/30/b6/a7/30b6a7f775240d055032738a30d66755.jpg" alt="Casual Flats">
+                            <h4>Casual Flats</h4>
+                            <p>$59.99</p>
+                            <button class="cta-button">Add to Cart</button>
+                        </div>
+                        <div class="product-card">
+                            <img src="https://i.pinimg.com/736x/60/d1/f7/60d1f79fa7e05702f828345c86e8f9ee.jpg" alt="Designer Boots">
+                            <h4>Designer Boots</h4>
+                            <p>$99.99</p>
+                            <button class="cta-button">Add to Cart</button>
+                        </div>
+                        <div class="product-card">
+                            <img src="https://i.pinimg.com/736x/2e/18/8c/2e188c6cc466e50be644df507339a390.jpg" alt="Evening Shoes">
+                            <h4>Evening Shoes</h4>
+                            <p>$69.99</p>
+                            <button class="cta-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter" aria-labelledby="newsletter-heading">
+            <h2 id="newsletter-heading">Subscribe to Our Newsletter</h2>
+            <form class="newsletter-form" role="form" aria-label="Newsletter subscription">
+                <input type="email" placeholder="Enter your email" aria-label="Email address" required>
+                <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <section class="footer-section" aria-labelledby="contact-heading">
+                <h3 id="contact-heading">Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +267 76001655</li>
+                    <li><i class="fas fa-envelope"></i> info@eleganceboutique.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Gaborone, Botswana</li>
+                </ul>
+            </section>
+            <section class="footer-section" aria-labelledby="social-heading">
+                <h3 id="social-heading">Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </section>
+            <section class="footer-section" aria-labelledby="links-heading">
+                <h3 id="links-heading">Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elegance Boutique. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
